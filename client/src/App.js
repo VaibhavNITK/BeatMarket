@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import Producers from "./pages/Producers";
+import Demo from "./pages/Demo";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="contacts" element={<Contacts />} />
         <Route path="producers" element={<Producers />} />
       </Routes>
+      <Demo />
     </BrowserRouter>
   );
 }
