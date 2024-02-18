@@ -1,14 +1,11 @@
 import express from "express";
-import userRouter from "./routes/user.js";
-import adminRouter from "./routes/admin.js";
-import companyRouter from "./routes/company.js";
-import pocRouter from "./routes/poc.js";
-import linkRouter from "./routes/link.js";
-import skillRouter from "./routes/skills.js";
+import artistRouter from "./routes/artist.js";
+// import albumRouter from "./routes/album.js";
+// import songsRouter from "./routes/songs.js";
+// import producerRouter from "./routes/producer.js";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 import { errorMiddleware } from "./middlewares/error.js";
-import { isAuthenticated } from "./middlewares/auth.js";
 import cors from "cors";
 
 config({
@@ -27,12 +24,10 @@ app.use(cors({ credentials: true, origin: 'http://localhost:3000', methods: ["GE
 
 
 // Using routes
-app.use("/api/v1/admin", adminRouter);
-app.use("/api/v1/users", userRouter);
-app.use("/api/v1/company", companyRouter);
-app.use("/api/v1/poc", pocRouter);
-app.use("/api/v1/link", linkRouter);
-app.use("/api/v1/skills", skillRouter);
+app.use("/api/v1/artist", artistRouter);
+// app.use("/api/v1/album", albumRouter);
+// app.use("/api/v1/producer", producerRouter);
+// app.use("/api/v1/songs", songsRouter);
 
 app.get("/", (req, res) => {
   res.send("Nice working");

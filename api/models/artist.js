@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const schema = new mongoose.Schema({
   name: {
     type: String,
@@ -9,18 +10,37 @@ const schema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  bio:{
-    type: String,
-    
-  },
   password: {
-    required: true,
     type: String,
+    required: true, // This line was missing
     select: false,
   },
-  purchased_songs:[{
+  bio: {
+    type: String,
+  },
+  insta_link: {
+    type: String,
+  },
+  fb_link: {
+    type: String,
+  },
+  twitter_link: {
+    type: String,
+  },
+  album: {
     type: mongoose.Schema.Types.ObjectId,
-    ref:'Song'
+    ref: 'Song',
+  },
+  image: {
+    type: String,
+  },
+  
+  like: {
+    type: Number,
+  },
+  purchased_albums: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Album',
   }],
   createdAt: {
     type: Date,
