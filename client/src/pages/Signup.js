@@ -1,22 +1,48 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import React, { useState, useContext,useEffect } from "react";
+
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { Navigate } from "react-router-dom";
+import { Context} from "../index";
+import axios from "axios"
 
 export default function SignUp() {
-  const { signup } = useAuth();
+
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const { isAuthenticated, setIsAuthenticated} =useContext(Context);
 
-  function handleSubmit(e) {
+  async function handleSubmit (e) {
     e.preventDefault();
+   
 
-    if (email && password && name) {
-      signup(name, email, password);
+    try {
+      const { data } = await axios.post(
+        "http://localhost:4000/api/v1/artist/new",
+        {
+          name,
+          email,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+
+      toast.success("Signed in successfully");
+      setIsAuthenticated(true);
+      
+    } catch (error) {
+      toast.error(error.response.data.message);
+     
+      setIsAuthenticated(false);
     }
   }
-
+  if (isAuthenticated) return <Navigate to={"/home"} />;
   return (
     <div className="text-center m-5-auto">
       <h1>Join us</h1>

@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const URI = "https://localhost:5000";
 const AuthContext = createContext();
 
 const initialValue = {
@@ -34,6 +34,7 @@ function reducer(state, action) {
 }
 
 function AuthProvider({ children }) {
+  
   const [{ user }, dispatch] = useReducer(reducer, initialValue);
 
   async function login(email, password) {
@@ -45,21 +46,21 @@ function AuthProvider({ children }) {
       };
 
       const { data } = await axios.post(
-        `${URI}/api/user/login`,
+        `http://localhost:4000/api/v1/artist/login`,
         { email, password },
         config
       );
 
-      localStorage.setItem("token", data.token);
-
       const USER = {
         name: data.name,
         email: data.email,
+        id: data._id,
+        
       };
 
-      //console.log(data);
       console.log("Login successful");
       dispatch({ type: "login", payload: USER });
+      
     } catch (err) {
       console.error("Authentication failed:", err.message);
     }
@@ -74,20 +75,21 @@ function AuthProvider({ children }) {
       };
 
       const { data } = await axios.post(
-        `${URI}/api/user/signup`,
+        `http://localhost:4000/api/v1/artist/new`,
         { name, email, password },
         config
       );
-      localStorage.setItem("token", data.token);
 
       const USER = {
         name: data.name,
         email: data.email,
+        id: data._id,
+        
       };
 
-      //console.log(data);
       console.log("Signup successful");
       dispatch({ type: "signup", payload: USER });
+      
     } catch (err) {
       console.error("Authentication failed:", err.message);
     }
@@ -95,6 +97,7 @@ function AuthProvider({ children }) {
 
   function logout() {
     dispatch({ type: "logout" });
+    
   }
 
   return (
