@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import Producers from "./pages/Producers";
+import SongsPage from "./pages/SongsPage";
 
 export default function App() {
   return (

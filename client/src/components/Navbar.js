@@ -16,12 +16,14 @@ const Navbar = () => {
 
       <ul className="hidden md:flex">
         {navItems.map((item) => (
-          <li
-            key={item.id}
-            className="p-4 hover:bg-[#00df9a] rounded-xl m-2 cursor-pointer duration-300 hover:text-black"
-          >
-            <NavLink to={item.link}>{item.text}</NavLink>
-          </li>
+          <NavLink to={item.link}>
+            <li
+              key={item.id}
+              className="p-4 hover:bg-[#00df9a] rounded-xl m-2 cursor-pointer duration-300 hover:text-black"
+            >
+              {item.text}
+            </li>
+          </NavLink>
         ))}
       </ul>
     </div>

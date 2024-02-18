@@ -7,17 +7,22 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import { useNavigate } from "react-router-dom";
 
-export default function RecipeReviewCard() {
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+export default function Cards() {
   const navigate = useNavigate();
+  const [producerName, setProducerName] = useState("");
+  const [AlbumTitle, setAlbumTitle] = useState("");
+  const [date, setDate] = useState();
 
   function handleClick() {
-    navigate("/producers");
+    navigate(`/producers?producer=${producerName}`);
   }
+
   return (
-    <div className="shadom-5xl rounded-6xl">
+    <div className="shadom-5xl my-7 px-5">
       <Card
         sx={{ backgroundColor: "#ccc", cursor: "pointer" }}
         onClick={handleClick}
@@ -25,7 +30,7 @@ export default function RecipeReviewCard() {
         <CardHeader title="Beat Title" subheader="Date" />
         <CardMedia
           component="img"
-          height="200"
+          height="150"
           image="images/images.jpeg"
           alt="Image"
         />
@@ -34,12 +39,9 @@ export default function RecipeReviewCard() {
             Producer Name
           </Typography>
         </CardContent>
-        <CardActions disableSpacing>
+        <CardActions>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
           </IconButton>
         </CardActions>
       </Card>
