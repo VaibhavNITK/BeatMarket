@@ -1,8 +1,16 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
+import React from "react";
+import Navbar from "../components/Navbar";
+import Cards from "../components/Cards";
 
 export default function Home() {
   return (
-    <Navbar />
-  )
+    <>
+      <header>
+        <Navbar />
+      </header>
+      <main className="mt-10 mx-5 px-5 flex">
+        <Cards />
+      </main>
+    </>
+  );
 }
