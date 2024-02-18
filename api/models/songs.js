@@ -1,23 +1,24 @@
 import mongoose from "mongoose";
+
 const schema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  price:{
-    type:Number,
-    required: true,
-  },
-  producer_id:{
+  album_id: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Producer",
+    ref: 'Album',
   },
-  buyers:[{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Artist",
-  }],
-  song:{
+  // Uncomment the following lines if you want to include the 'price' field
+  // price: {
+  //   type: Number,
+  //   required: true,
+  // },
+  song: {
     type: String,
+  },
+  like: {
+    type: Number,
   },
   createdAt: {
     type: Date,

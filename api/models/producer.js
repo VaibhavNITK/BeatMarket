@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { Song } from "./songs";
 const schema = new mongoose.Schema({
   name: {
     type: String,
@@ -27,13 +26,12 @@ const schema = new mongoose.Schema({
   twitter_link:{
     type: String,
   },
-  albums:[{
+  album:{
     type: mongoose.Schema.Types.ObjectId,
     ref:'Song'
-  }],
+  },
   image:{
     type:String,
-    
   },
   createdAt: {
     type: Date,
