@@ -8,7 +8,7 @@ export default function ListItems({ song }) {
     <div className="bg-gray-100 my-2 rounded-3xl">
       <ListItem
         key={id}
-        className="font-extrabold text-md hover:text-blue-600 my-5 gap-10 justify-between"
+        className="font-extrabold text-md hover:text-blue-600 my-5 gap-10 justify-between flex flex-row"
       >
         <h2 className="text-2xl font-semibold mx-5 px-5">{title}</h2>
         <div className="justify-center flex flex-row gap-8">
