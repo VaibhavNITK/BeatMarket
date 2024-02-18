@@ -2,10 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const navItems = [
-  { id: 1, text: "Home", link: "/" },
-  { id: 2, text: "Producers", link: "/producers" },
-  { id: 4, text: "About", link: "/about" },
-  { id: 5, text: "Contact", link: "/contacts" },
+  { id: 1, text: "Home", link: "/home" },
+  { id: 2, text: "Profile", link: "/about" },
+  { id: 3, text: "Contact", link: "/contacts" },
 ];
 
 const Navbar = () => {
