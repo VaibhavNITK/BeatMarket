@@ -13,12 +13,12 @@ import { useState } from "react";
 
 export default function Cards() {
   const navigate = useNavigate();
-  const [producerName, setProducerName] = useState("");
+  const [producerId, setProducerId] = useState("1234");
   const [AlbumTitle, setAlbumTitle] = useState("");
   const [date, setDate] = useState();
 
   function handleClick() {
-    navigate(`/producers?producer=${producerName}`);
+    navigate(`/producers/:${producerId}`);
   }
 
   return (

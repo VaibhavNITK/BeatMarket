@@ -16,7 +16,7 @@ function SongProvider({ children }) {
       : songs;
 
   function handleAddSong(song) {
-    //add song to the list of songs
+    //add song to the list of songs(pending)
     setSongs((songs) => [song, ...songs]);
   }
 

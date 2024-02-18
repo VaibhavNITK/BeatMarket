@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import Contacts from "./pages/Contacts";
 import SongsPage from "./pages/SongsPage";
 import LandingPage from "./pages/LandingPage";
@@ -21,12 +20,11 @@ export default function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="home" element={<Home />} />
-            <Route path="about" element={<About />} />
             <Route path="contacts" element={<Contacts />} />
             <Route path="profile" element={<Profile />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
-            <Route path="song-page" element={<SongsPage />} />
+            <Route path="producers/:id" element={<SongsPage />} />
           </Routes>
         </BrowserRouter>
       </SongProvider>

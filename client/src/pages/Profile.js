@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { Card } from "@material-tailwind/react";
 import ListItems from "../components/ListItems";
 import Demo from "./Demo";
+import SearchGenre from "../components/SearchGenre";
 
 const songs = [
   {
@@ -35,7 +36,10 @@ export default function Profile() {
         <Navbar />
       </header>
       <main className="mt-10 mx-5 px-5">
-        <h1 className="my-5 text-6xl font-bold">My Songs</h1>
+        <div className="flex justify-between px-7">
+          <h1 className="my-5 text-6xl font-bold">My Songs</h1>
+          <SearchGenre />
+        </div>
 
         <Card className="my-10">
           {songs.map((song) => (
