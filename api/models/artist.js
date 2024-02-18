@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-  name: {
+  name:{
     type: String,
     required: true,
   },
@@ -30,6 +30,9 @@ const schema = new mongoose.Schema({
   album: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Song',
+  },
+  albumName:{
+    type:String,
   },
   image: {
     type: String,

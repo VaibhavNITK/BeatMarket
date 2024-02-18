@@ -1,15 +1,17 @@
-// import express from "express";
-// import { getMyProfile, getProfile, login, logout, register } from "../controllers/user.js";
-// import { isAuthenticated } from "../middlewares/auth.js";
+import express from "express";
+import { getMyProfile, getProfile, login, logout, register,addBio } from "../controllers/songs.js";
+import { isAuthenticated } from "../middlewares/auth.js";
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.post("/new", register);
-// router.post("/login", login);
 
-// router.get("/logout", logout);
 
-// router.get("/me", isAuthenticated, getMyProfile);
-// router.get("/:id",getProfile)
+// router.get("getAll", getAll);
+router.post("/login", login);
+router.post("/update",isAuthenticated,addBio)
+router.get("/logout",isAuthenticated, logout);
 
-// export default router;
+router.get("/me", isAuthenticated, getMyProfile);
+router.get("/:id",getAll)
+
+export default router;

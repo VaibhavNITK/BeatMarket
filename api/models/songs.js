@@ -26,4 +26,4 @@ const schema = new mongoose.Schema({
   },
 });
 
-export const Song = mongoose.model("Song", schema);
+export const Songs = mongoose.model("Songs", schema);
