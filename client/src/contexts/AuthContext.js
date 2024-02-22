@@ -1,12 +1,14 @@
 import { createContext, useContext, useReducer } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 
 const AuthContext = createContext();
 
 const initialValue = {
   user: null,
+  isVerified : false,
 };
+
 
 function reducer(state, action) {
   switch (action.type) {
@@ -14,18 +16,21 @@ function reducer(state, action) {
       return {
         ...state,
         user: action.payload,
+        isVerified : true,
       };
 
     case "logout":
       return {
         ...state,
         user: null,
+        isVerified : false,
       };
 
     case "signup":
       return {
         ...state,
         user: action.payload,
+        isVerified : true,
       };
 
     default:
@@ -35,7 +40,7 @@ function reducer(state, action) {
 
 function AuthProvider({ children }) {
   
-  const [{ user }, dispatch] = useReducer(reducer, initialValue);
+  const [{ user, isVerified }, dispatch] = useReducer(reducer, initialValue);
 
   async function login(email, password) {
     try {
@@ -51,11 +56,11 @@ function AuthProvider({ children }) {
         config
       );
 
+      localStorage.setItem("token", data.token);
+
       const USER = {
         name: data.name,
         email: data.email,
-        id: data._id,
-        
       };
 
       console.log("Login successful");
@@ -80,11 +85,11 @@ function AuthProvider({ children }) {
         config
       );
 
+      localStorage.setItem("token", data.token);
+
       const USER = {
         name: data.name,
         email: data.email,
-        id: data._id,
-        
       };
 
       console.log("Signup successful");
@@ -101,7 +106,7 @@ function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, signup }}>
+    <AuthContext.Provider value={{ user, isVerified, login, logout, signup }}>
       {children}
     </AuthContext.Provider>
   );

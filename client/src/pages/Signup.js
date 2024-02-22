@@ -1,48 +1,37 @@
-import React, { useState, useContext,useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate, Link } from "react-router-dom";
-import { toast } from "react-hot-toast";
-import { Navigate } from "react-router-dom";
-import { Context} from "../index";
-import axios from "axios"
+import { useAuth } from "../contexts/AuthContext";
+
 
 export default function SignUp() {
 
-  const [email, setEmail] = useState("");
+  const { signup, isVerified } = useAuth();
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { isAuthenticated, setIsAuthenticated} =useContext(Context);
+  const navigate = useNavigate();
 
-  async function handleSubmit (e) {
+  function handleSubmit(e) {
     e.preventDefault();
-   
 
-    try {
-      const { data } = await axios.post(
-        "http://localhost:4000/api/v1/artist/new",
-        {
-          name,
-          email,
-          password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-
-      toast.success("Signed in successfully");
-      setIsAuthenticated(true);
-      
-    } catch (error) {
-      toast.error(error.response.data.message);
-     
-      setIsAuthenticated(false);
+    if (name && email && password) {
+      signup(name, email, password);
+    }else{
+      toast.error("Fill signup details.")
     }
   }
-  if (isAuthenticated) return <Navigate to={"/home"} />;
+  
+  useEffect(
+    function () {
+      if (isVerified) {
+        navigate("/home", { replace: true });
+      }
+    },
+    [isVerified, navigate]
+  );
+
+  
   return (
     <div className="text-center m-5-auto">
       <h1>Join us</h1>
@@ -87,7 +76,7 @@ export default function SignUp() {
         </p>
 
         <div>
-          <button id="sub_btn" type="submit">
+          <button type="submit">
             Register
           </button>
         </div>
@@ -98,6 +87,7 @@ export default function SignUp() {
           <Link to="/">Back to Homepage</Link>.
         </p>
       </footer>
+      <Toaster />
     </div>
   );
 }
