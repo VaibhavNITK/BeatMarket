@@ -1,47 +1,33 @@
-import { createContext, useContext, useState } from "react";
+// import { createContext, useContext, useState } from "react";
 
-const SongContext = createContext();
+// const SongContext = createContext();
 
-function SongProvider({ children }) {
-  const [songs, setSongs] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+// function SongProvider({ children }) {
+//   const [albums, setAlbums] = useState([]);
+  
+  
 
-  const searchedSongs =
-    searchQuery.length > 0
-      ? songs.filter((post) =>
-          `${post.title} ${post.body}`
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase())
-        )
-      : songs;
+//   return (
+//     <SongContext.Provider
+//       value={{
+//         songs: searchedSongs,
+//         onAddSong: handleAddSong,
+//         onClearSongs: handleClearSongs,
+//         searchQuery,
+//         setSearchQuery,
+//       }}
+//     >
+//       {children}
+//     </SongContext.Provider>
+//   );
+// }
 
-  function handleAddSong(song) {
-    //add song to the list of songs(pending)
-    setSongs((songs) => [song, ...songs]);
-  }
+// function useSongs() {
+//   const context = useContext(SongContext);
+//   if (context === undefined)
+//     throw new Error("This context was used outside the AuthProvider.");
 
-  function handleClearSongs() {
-    setSongs([]);
-  }
+//   return context;
+// }
 
-  return (
-    <SongContext.Provider
-      value={{
-        songs: searchedSongs,
-        onAddSong: handleAddSong,
-        onClearSongs: handleClearSongs,
-        searchQuery,
-        setSearchQuery,
-      }}
-    >
-      {children}
-    </SongContext.Provider>
-  );
-}
-
-function useSongs() {
-  const context = useContext(SongContext);
-  return context;
-}
-
-export { SongProvider, useSongs };
+// export { SongProvider, useSongs };

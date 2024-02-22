@@ -7,7 +7,7 @@ import LandingPage from "./pages/LandingPage";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { AuthProvider } from "./contexts/AuthContext";
-import { SongProvider } from "./contexts/SongContext";
+// import { SongProvider } from "./contexts/SongContext";
 
 import "./App.css";
 import Profile from "./pages/Profile";
@@ -15,7 +15,6 @@ import Profile from "./pages/Profile";
 export default function App() {
   return (
     <AuthProvider>
-      <SongProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingPage />} />
@@ -27,7 +26,6 @@ export default function App() {
             <Route path="producers/:id" element={<SongsPage />} />
           </Routes>
         </BrowserRouter>
-      </SongProvider>
     </AuthProvider>
   );
 }

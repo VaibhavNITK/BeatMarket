@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-const schema = new mongoose.Schema({
+const albumSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -24,7 +24,7 @@ const schema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  like: {
+  likes: {
     type: Number,
   },
   createdAt: {
@@ -33,4 +33,6 @@ const schema = new mongoose.Schema({
   },
 });
 
-export const Album = mongoose.model("Album", schema);
+const Album = mongoose.model("Album", albumSchema);
+
+module.exports = Album;

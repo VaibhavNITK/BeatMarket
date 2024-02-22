@@ -1,13 +1,34 @@
-import {app} from "./app.js";
-import express from "express";
-import { connectDB } from "./data/database.js"; 
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const connectDB = require("./config/db");
 
 
-connectDB(); 
+const artistRoutes = require("./routes/artistRoutes");
 
 
-// Start the server
-app.listen(4000, () => {
-  console.log("Server is listening on port 4000"); 
+dotenv.config();
+connectDB();
+const app = express();
+
+// middlewares
+app.use(express.json());
+app.use(cors());
+
+
+
+app.get("/", (req, res) => {
+  res.send("Backend running");
 });
- 
+
+
+// **** ARTIST-ROUTES ****
+app.use("/api/artist", artistRoutes);
+
+
+
+const PORT = process.env.PORT || 9000;
+
+app.listen(PORT, console.log(`Server started on port ${PORT}`.yellow.bold));
+
+

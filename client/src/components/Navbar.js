@@ -6,28 +6,28 @@ import { Navigate } from "react-router-dom";
 import { Context } from "../index";
 
 const Navbar = () => {
-  const { isAuthenticated, setIsAuthenticated} =
-  useContext(Context);
+  // const { isAuthenticated, setIsAuthenticated} =
+  // useContext(Context);
 
-  const handleClick = async (e) => {
+  // const handleClick = async (e) => {
    
-    try {
-      const {data}=await axios.get("http://localhost:4000/api/v1/artist/logout", {
-        withCredentials: true,
-      });
+  //   try {
+  //     const {data}=await axios.get("http://localhost:4000/api/v1/artist/logout", {
+  //       withCredentials: true,
+  //     });
 
-      toast.success(data.message);
-      setIsAuthenticated(false);
+  //     toast.success(data.message);
+  //     setIsAuthenticated(false);
       
-    } catch (error) {
-      toast.error(error.response.data.message);
-      setIsAuthenticated(true);
+  //   } catch (error) {
+  //     toast.error(error.response.data.message);
+  //     setIsAuthenticated(true);
       
-    }
+  //   }
     
-  };
+  // };
 
-  if (!isAuthenticated) return <Navigate to={"/login"} />;
+  // if (!isAuthenticated) return <Navigate to={"/login"} />;
 
   return (
     <div className="bg-black flex justify-between items-center h-24 w-[100%] mx-auto px-4 text-white">
@@ -50,7 +50,7 @@ const Navbar = () => {
           </li>
         </NavLink>
         <button
-          onClick={handleClick}
+          //onClick={handleClick}
           className="p-4 hover:bg-[#00df9a] rounded-xl m-2 cursor-pointer duration-300 hover:text-black"
         >
           Logout

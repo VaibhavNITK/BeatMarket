@@ -51,7 +51,7 @@ function AuthProvider({ children }) {
       };
 
       const { data } = await axios.post(
-        `http://localhost:4000/api/v1/artist/login`,
+        `http://localhost:9000/api/artist/login`,
         { email, password },
         config
       );
@@ -80,7 +80,7 @@ function AuthProvider({ children }) {
       };
 
       const { data } = await axios.post(
-        `http://localhost:4000/api/v1/artist/new`,
+        `http://localhost:9000/api/artist/signup`,
         { name, email, password },
         config
       );

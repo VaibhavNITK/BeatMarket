@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-const schema = new mongoose.Schema({
+const artistSchema = new mongoose.Schema({
   name:{
     type: String,
     required: true,
@@ -12,8 +12,7 @@ const schema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true, // This line was missing
-    select: false,
+    required: true, 
   },
   bio: {
     type: String,
@@ -27,21 +26,13 @@ const schema = new mongoose.Schema({
   twitter_link: {
     type: String,
   },
-  album: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Song',
-  },
   albumName:{
     type:String,
   },
   image: {
     type: String,
   },
-  
-  like: {
-    type: Number,
-  },
-  purchased_albums: [{
+  album: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Album',
   }],
@@ -51,4 +42,7 @@ const schema = new mongoose.Schema({
   },
 });
 
-export const Artist = mongoose.model("Artist", schema);
+
+
+const Artist = mongoose.model("Artist", artistSchema);
+module.exports = Artist;

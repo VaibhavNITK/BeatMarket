@@ -1,0 +1,1 @@
+// Implement buyer model in same format as other model
